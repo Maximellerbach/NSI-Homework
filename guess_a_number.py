@@ -115,7 +115,7 @@ class CeluiQuiFaitDeviner(): # de beaux noms de variables
                 print(nombre)
             return self.reponse_automatique(nombre)      
 
-    def reponse_manuelmatique(self, nombre):
+    def reponse_automatique(self, nombre):
         '''
         fonction pour répondre automatiquement au Chercheur
         '''

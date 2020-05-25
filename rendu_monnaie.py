@@ -11,7 +11,7 @@ def exercice_1():
 
     caisse = [200, 100, 50, 20, 10, 5, 2, 1] # liste de toutes les pièces de monnaie en centime
     rendu = rendmonnaie(2.34, caisse)
-    print(rendu)
+    print("rendu:", rendu)
 
 def exercice_2():
     def rendmonnaie2(s, c):
@@ -26,7 +26,7 @@ def exercice_2():
 
     caisse = [200, 100, 50, 20, 10, 5, 2, 1] # liste de toutes les pièces de monnaie en centime
     rendu = rendmonnaie2(2.34, caisse)
-    print(rendu)
+    print("rendu:", rendu)
 
 def exercice_3():
     import random

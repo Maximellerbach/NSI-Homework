@@ -146,4 +146,4 @@ if __name__ == "__main__":
 
     # Exemple de calcul du temps d'exectution:
     temps = partie.calculer_temps_execution(n=100)
-    print(temps)
+    print("temps d'execution:", temps)

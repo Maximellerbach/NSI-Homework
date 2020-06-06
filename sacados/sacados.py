@@ -13,6 +13,9 @@ def axis_sort(L, n, reverse=False): # utilise le timsort
     return sorted(L, key= lambda x: x[n], reverse=reverse)
 
 def evaluer_fonction(fonction, iteration=100):
+    """
+    calcule le temps moyen d'execution d'une fonction (exercice A, B et C)
+    """
     
     elapsed_times = []
 
@@ -27,6 +30,23 @@ def evaluer_fonction(fonction, iteration=100):
 
     return elapsed_times
 
+def glouton(l, maxi): # generic function for the glouton algorithm
+    """ 
+    l est une liste tel que: [(valeurs, poids)]
+    maxi est le poids maximum que peut porter le sac
+    """
+    
+    reponse = []
+    tot_valeur = 0
+    tot_poids = 0
+    for valeur, poids in l:
+        if poids+tot_poids<=maxi:
+            tot_valeur += valeur
+            tot_poids += poids
+            reponse.append(1)
+        else:
+            reponse.append(0)
+    return reponse, tot_valeur, tot_poids
 
 def exercice_1():
     def extraire(L, n):
@@ -36,71 +56,24 @@ def exercice_1():
     return extraire(L, 1)
 
 def exercice_A(liste, poids_max):
-    def gloutonP(l, maxi):
-        
-        reponse = []
-        tot_valeur = 0
-        tot_poids = 0
-
-        for valeur, poids in l:
-            if poids+tot_poids<=maxi:
-                tot_valeur += valeur
-                tot_poids += poids
-                reponse.append(1)
-            else:
-                reponse.append(0)
-
-        return reponse, tot_valeur, tot_poids
-
     liste_trie_poids = axis_sort(liste, 0, reverse=True)
-    return gloutonP(liste_trie_poids, poids_max)
+    return glouton(liste_trie_poids, poids_max)
     
 def exercice_B(liste, poids_max):
-    def gloutonV(l, maxi):
-        
-        reponse = []
-        tot_valeur = 0
-        tot_poids = 0
-
-        for valeur, poids in l:
-            if poids+tot_poids<=maxi:
-                tot_valeur += valeur
-                tot_poids += poids
-                reponse.append(1)
-            else:
-                reponse.append(0)
-
-        return reponse, tot_valeur, tot_poids
-
     liste_trie_poids = axis_sort(liste, 1, reverse=True)
-    return gloutonV(liste_trie_poids, poids_max)
+    return glouton(liste_trie_poids, poids_max)
 
 def exercice_C(liste, poids_max):
     def sort_vpp(l, reverse=False):
         return sorted(l, key=lambda x: x[1]/x[0], reverse=reverse)
 
-    def gloutonVPP(l, maxi):
-        
-        reponse = []
-        tot_valeur = 0
-        tot_poids = 0
-
-        for valeur, poids in l:
-            if poids+tot_poids<=maxi:
-                tot_valeur += valeur
-                tot_poids += poids
-                reponse.append(1)
-            else:
-                reponse.append(0)
-
-        return reponse, tot_valeur, tot_poids
-
     liste_trie_poids = sort_vpp(liste, reverse=True)
-    return gloutonVPP(liste_trie_poids, poids_max)
+    return glouton(liste_trie_poids, poids_max)
+
 
 if __name__ == "__main__":
     sorted_list = exercice_1()
-    print("ex 1", sorted_list)
+    print("liste triée pour l'exercice 1:", sorted_list)
 
 
     for liste, p_max in zip(listes_data, poids_data):
